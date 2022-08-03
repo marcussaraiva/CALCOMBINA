@@ -1,0 +1,73 @@
+﻿@page "/arranjo"
+@using Syncfusion.Blazor.Buttons
+
+<PageTitle>CalCombina - Arranjo</PageTitle>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Entre com as variáveis solicitadas</h1>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-6 d-flex flex-column">
+            <label class="mb-1">Elementos (n)</label>
+            <SfNumericTextBox Placeholder="Entre com a variável n"
+                        @bind-Value="@VariavelN"
+            ></SfNumericTextBox>
+        </div>
+        <div class="col-6 d-flex flex-column">
+            <label class="mb-1">Conjunto (p)</label>
+            <SfNumericTextBox Placeholder="Entre com a variável p"
+                        @bind-Value="@VariavelP"
+            ></SfNumericTextBox>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <SfButton Content="Calcular" OnClick="args => CalcularArranjoSimples(VariavelN, VariavelP)"></SfButton>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label>O resultado é: <span>@Resultado</span></label>
+        </div>
+    </div>
+</div>
+
+@code {
+    private int VariavelN;
+    private int VariavelP;
+    private int Resultado;
+
+    public void CalcularArranjoSimples(int variavelN, int variavelP)
+    {
+        int fatN;
+        int fatNmP;
+
+        //Calculando fatoriais de n e de n-p
+        fatN = CalcularFatorial(variavelN);
+        fatNmP = CalcularFatorial(variavelN - variavelP);
+
+        //Encontrando o Arranjo
+        Resultado = fatN / fatNmP;
+    }
+
+    public int CalcularFatorial(int variavel)
+    {
+        int fatorial;
+
+        if (variavel <= 1)
+        {
+            return 1;
+        }
+        else
+        {
+            fatorial = variavel * CalcularFatorial(variavel-1);
+            return fatorial;
+        }
+    }
+
+}
