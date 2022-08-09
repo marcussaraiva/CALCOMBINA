@@ -1,5 +1,6 @@
 ﻿@page "/arranjo"
 @using Syncfusion.Blazor.Buttons
+@using Utils = CALCOMBINA.Utils.Utils
 
 <PageTitle>CalCombina - Arranjo</PageTitle>
 
@@ -38,36 +39,20 @@
 </div>
 
 @code {
-    private int VariavelN;
-    private int VariavelP;
-    private int Resultado;
+    private long VariavelN;
+    private long VariavelP;
+    private long Resultado;
 
-    public void CalcularArranjoSimples(int variavelN, int variavelP)
+    public void CalcularArranjoSimples(long variavelN, long variavelP)
     {
-        int fatN;
-        int fatNmP;
+        long fatN;
+        long fatNmP;
 
         //Calculando fatoriais de n e de n-p
-        fatN = CalcularFatorial(variavelN);
-        fatNmP = CalcularFatorial(variavelN - variavelP);
+        fatN = Utils.CalcularFatorial(variavelN);
+        fatNmP = Utils.CalcularFatorial(variavelN - variavelP);
 
         //Encontrando o Arranjo
         Resultado = fatN / fatNmP;
-    }
-
-    public int CalcularFatorial(int variavel)
-    {
-        int fatorial;
-
-        if (variavel <= 1)
-        {
-            return 1;
-        }
-        else
-        {
-            fatorial = variavel * CalcularFatorial(variavel-1);
-            return fatorial;
-        }
-    }
-
+    } 
 }
